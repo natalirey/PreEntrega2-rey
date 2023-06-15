@@ -7,7 +7,7 @@ function renderProducto() {
         <p class="text-body-tertiary">${producto.marca}</p>
         <h3 class="text-secondary">${producto.nombre}</h3>
         <h4 class="text-warning"><b>U$D ${producto.precio}</b></h4>
-        <p class="my-5"><button class="btn btn-warning" onclick="agregarProducto(${producto.id});">Agregar (+)</button></p>
+        <p class="my-5"><button class="btn btn-warning" onclick="agregarProducto(${producto.id});">Agregar al carrito</button></p>
     </div>`;
     document.getElementById("contenido").innerHTML = contenido
 }
