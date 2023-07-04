@@ -14,32 +14,45 @@ function cargarCarritoLS() {
     return JSON.parse(localStorage.getItem("carrito")) || [];
 }
 
-function guardarCarritoLS(carrito) {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-}
-
-function cargarCarritoLS() {
-    return JSON.parse(localStorage.getItem("carrito")) || [];
-}
-
 function buscarProducto(id) {
     const productos = cargarProductosLS();
     
     return productos.find(item => item.id === id);
 }
 
+function estaEnElCarrito(id){
+    const carrito = cargarCarritoLS();
+
+    return carrito.some(item => item.id === id);
+}
+
 function agregarProducto(id) {
     const carrito = cargarCarritoLS();
-    const producto = buscarProducto(id);
-    carrito.push(producto);
+
+    if (estaEnElCarrito(id)) {
+        let pos = carrito.findIndex(item => item.id === id)
+        carrito[pos].cantidad += 1;
+    }else{
+        const producto = buscarProducto(id);
+        producto.cantidad = 1;
+        carrito.push(producto);
+    }
+
     guardarCarritoLS(carrito);
     renderBotonCarrito();
 }
 
 function eliminarProducto(id) {
     const carrito = cargarCarritoLS();
-    const nuevoCarrito = carrito.filter(item => item.id != id)
-    guardarCarritoLS(nuevoCarrito);
+    let pos = carrito.findIndex(item => item.id === id);
+    
+    if (carrito[pos].cantidad > 1) {
+        carrito[pos].cantidad -= 1;
+    } else {
+        carrito.splice(pos, 1);
+    }
+
+    guardarCarritoLS(carrito);
     renderBotonCarrito();
     renderProductos();
 }
@@ -49,15 +62,23 @@ function vaciarCarrito() {
     renderBotonCarrito();
     renderProductos();
 }
+
 function cantidadTotalProductos() {
     const carrito = cargarCarritoLS();
-    return carrito.length;
+
+    return carrito.reduce((acumulador, item) => acumulador += item.cantidad, 0);
 }
 
 function sumaTotalProductos() {
     const carrito = cargarCarritoLS();
 
-    return carrito.reduce((acumulador, item) => acumulador += item.precio, 0);
+    return carrito.reduce((acumulador, item) => acumulador += item.cantidad * item.precio, 0);
+}
+
+function verProducto(id) {
+    const producto = buscarProducto(id);
+    localStorage.setItem("producto", JSON.stringify(producto));
+    //location.href = "ver-producto.html"; //Redireccionar a la página pasada por parámetro
 }
 
 function renderBotonCarrito() {
