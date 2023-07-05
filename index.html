@@ -13,7 +13,7 @@
             <div class="col-md-4">
                 <div class="input-group mb-3">
                     <input type="text" id="textoBusqueda" class="form-control" placeholder="Buscar productos...">
-                    <span class="input-group-text" id="btnBusqueda">Buscar</span>
+                    <span class="input-group-text" id="btnBusqueda" onclick="filtrarProductos()">Buscar</span>
                 </div>
             </div>
             <div class="col-md-4">
@@ -25,10 +25,41 @@
         </div>
     </header>
     <main>
-        <div class="container textm-5">
-            <div id="contenido" class="row"></div>
+        <div class="text-start mx-5">
+            <h2>Filtrar</h2>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="check1" value="Air Jordan" id="inlineCheckbox1" onclick="filtrarProductosConCheck()">
+                <label class="form-check-label" for="inlineCheckbox1">Air Jordan</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="check2" value="Adidas" id="inlineCheckbox1" onclick="filtrarProductosConCheck()">
+                <label class="form-check-label" for="inlineCheckbox1">Adidas</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="check3" value="Nike" id="inlineCheckbox1" onclick="filtrarProductosConCheck()">
+                <label class="form-check-label" for="inlineCheckbox1">Nike</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="check4"  value="Travis Scott" id="inlineCheckbox1" onclick="filtrarProductosConCheck()">
+                <label class="form-check-label" for="inlineCheckbox1">Travis Scott</label>
+            </div>
+            <hr class="col-4 text-start">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="check5"  value="si" id="inlineCheckbox1" onclick="filtrarProductosConCheck()">
+                    <label class="form-check-label" for="inlineCheckbox1">Entrega inmediata</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="check6"  value="no" id="inlineCheckbox1" onclick="filtrarProductosConCheck()">
+                    <label class="form-check-label" for="inlineCheckbox1">A pedido</label>
+                </div>
+
         </div>
-                <div>
+    <div class="mx-5">
+        <div id="contenido" class="row"></div>
+    </div>
+
+        
+        <div>
             <img src="https://admin.digitalsport.com.ar/files/uploads/2021-SEPTIEMBRE/Jordan%204%20Retro%20Lightning.png" class="rounded float-start" alt="...">
             <img src="https://admin.digitalsport.com.ar/files/uploads/2021-SEPTIEMBRE/Jordan%204%20Retro%20Lightning%20(1).png" class="rounded float-end" alt="...">
         </div>

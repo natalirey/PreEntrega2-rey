@@ -91,3 +91,70 @@ function renderBotonCarrito() {
     </button>`;
     botonCarrito.innerHTML = contenido;    
 }
+
+function filtrarProductos() {
+    let productos = cargarProductosLS();
+    let textoBusqueda = document.getElementById("textoBusqueda").value;
+    let contenido = "";
+
+    productos = textoBusqueda ? productos.filter(item => item.nombre.toUpperCase().includes(textoBusqueda.toUpperCase())) : productos;
+    
+    if (productos.length > 0) {
+        productos.forEach(producto => {
+            contenido += `<div class="col-md-3 mb-5">
+        <a href="ver-producto.html" onclick="verProducto(${producto.id})" class="text-decoration-none">
+            <div class="card text-center border border-0">
+                <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
+                <div class="card-body">
+                <p class="text-secondary">${producto.nombre}</p>
+                <p class="card-text text-warning"><b>U$D ${producto.precio}</b></p>
+                </a>
+                <p class="my-2"><button class="btn btn-warning" onclick="agregarProducto(${producto.id});"><img src="./multimedia/cart2.svg" width="25"></button></p>
+                </div>
+            </div>
+        </div>`;
+        });
+    } else {
+        contenido += `<div class="alert alert-danger text-center" role="alert">No se encontraron productos</div>`;
+    }
+    
+    document.getElementById("contenido").innerHTML = contenido;
+}
+
+function filtrarProductosConCheck() {
+    let productos = cargarProductosLS(); //9
+    let check1 = document.getElementById("check1");
+    let check2 = document.getElementById("check2");
+    let check3 = document.getElementById("check3");
+    let check4 = document.getElementById("check4");
+    let check5 = document.getElementById("check5");
+    let check6 = document.getElementById("check6");
+    let contenido = "";
+
+    productos = productos.filter(item => (check1.checked && item.marca == check1.value) || (check2.checked && item.marca == check2.value) || (check3.checked && item.marca == check3.value) || (check4.checked && item.marca == check4.value));
+    
+    if (check5.checked || check6.checked) {
+        productos = productos.filter(item => (check5.checked && item.entregaInmediata == check5.value) || (check6.checked && item.entregaInmediata == check6.value));
+    }
+
+    if (productos.length > 0) {
+        productos.forEach(producto => {
+            contenido += `<div class="col-md-3 mb-5">
+        <a href="ver-producto.html" onclick="verProducto(${producto.id})" class="text-decoration-none">
+            <div class="card text-center border border-0">
+                <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
+                <div class="card-body">
+                <p class="text-secondary">${producto.nombre}</p>
+                <p class="card-text text-warning"><b>U$D ${producto.precio}</b></p>
+                </a>
+                <p class="my-2"><button class="btn btn-warning" onclick="agregarProducto(${producto.id});"><img src="./multimedia/cart2.svg" width="25"></button></p>
+                </div>
+            </div>
+        </div>`;
+        });
+        
+        document.getElementById("contenido").innerHTML = contenido;
+    } else {
+        renderProductos();
+    }
+}

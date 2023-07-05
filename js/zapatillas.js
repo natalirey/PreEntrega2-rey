@@ -1,7 +1,11 @@
 function renderProductos() {
     let productos = cargarProductosLS();
+    let textoBusqueda = document.getElementById("textoBusqueda").value;
     let contenido = "";
 
+    productos = textoBusqueda ? productos.filter(item => item.nombre.toUpperCase().includes(textoBusqueda.toUpperCase())) : productos;
+
+    if (productos.length > 0) {
     productos.forEach(producto => {
         contenido += `<div class="col-md-3 mb-5">
         <a href="ver-producto.html" onclick="verProducto(${producto.id})" class="text-decoration-none">
@@ -16,15 +20,17 @@ function renderProductos() {
             </div>
         </div>`;
     });
-
+    } else {
+        contenido += `<div class="alert alert-danger text-center" role="alert">No se encontraron productos!</div>`;
+    }
     document.getElementById("contenido").innerHTML = contenido;
 };
 
-function verProducto(id) {
-    let productos = cargarProductosLS();
-    let producto = productos.find(item => item.id == id);
-    localStorage.setItem("producto", JSON.stringify(producto));
-}
+// function verProducto(id) {
+//     let productos = cargarProductosLS();
+//     let producto = productos.find(item => item.id == id);
+//     localStorage.setItem("producto", JSON.stringify(producto));
+// }
 
 renderProductos();
 renderBotonCarrito();
