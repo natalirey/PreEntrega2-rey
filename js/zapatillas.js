@@ -26,11 +26,5 @@ function renderProductos() {
     document.getElementById("contenido").innerHTML = contenido;
 };
 
-// function verProducto(id) {
-//     let productos = cargarProductosLS();
-//     let producto = productos.find(item => item.id == id);
-//     localStorage.setItem("producto", JSON.stringify(producto));
-// }
-
 renderProductos();
 renderBotonCarrito();

@@ -4,7 +4,6 @@ fetch("https://v6.exchangerate-api.com/v6/0cf95ad946a9172b3d2d8aee/latest/USD")
 
 let salida = "";
     
-
     salida += `<div class="text-center d-flex justify-content-center gap-5">
         <div class="card col-md-3">
             <div class="card-header">U$D oficial</div>

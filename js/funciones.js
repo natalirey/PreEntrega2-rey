@@ -78,7 +78,6 @@ function sumaTotalProductos() {
 function verProducto(id) {
     const producto = buscarProducto(id);
     localStorage.setItem("producto", JSON.stringify(producto));
-    //location.href = "ver-producto.html"; //Redireccionar a la página pasada por parámetro
 }
 
 function renderBotonCarrito() {
