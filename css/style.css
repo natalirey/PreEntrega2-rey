@@ -1,5 +1,15 @@
-.footer{
+/* .footer{
     width: 100%;
     height: 30px;
     background-color: #ffc107;
+} */
+
+#proximamente{
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+#contacto{
+    color: inherit;
+    text-decoration: none;
 }
